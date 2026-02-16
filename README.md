@@ -10,4 +10,4 @@ Visualizations: Leverages Matplotlib to generate analytics and progress charts f
 
 Database: Powered by MySQL to ensure persistent storage of user credentials, fund requests, and workflow stages.
 
-Workflow Automation: Tracks technical milestones from AAES and Bidding through to Work Completion.
+Workflow Automation: Tracks technical milestones from AAES and Bidding through to Work Completion, keeps a track on all the transactions upto date.
