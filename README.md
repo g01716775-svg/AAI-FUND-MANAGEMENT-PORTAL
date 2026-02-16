@@ -25,18 +25,5 @@ Data Handling: Pandas
 Language: Python
 
 📋 How to Run
-Clone the repository:
-
-Bash
-
-git clone https://github.com/g01716775-svg/AAI-Fund-Portal.git
-Install dependencies:
-
-Bash
-
-pip install streamlit pandas
-Run the app:
-
-Bash
 
 streamlit run app.py
