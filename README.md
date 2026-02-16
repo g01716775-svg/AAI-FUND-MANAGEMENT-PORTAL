@@ -1,29 +1,13 @@
-# AAI-FUND-MANAGEMENT-PORTAL
-A specialized Streamlit-based financial application designed to manage fund requests and work progress for the Airports Authority of India (AAI). The portal provides a structured workflow for Regional Headquarters (RHQ) and individual Stations to interact during the fund allocation process.
 AAI Fund Management Portal
-A centralized digital platform designed for the Airports Authority of India (AAI) to manage fund allocations and track infrastructure project progress across various stations.
 
-🚀 Overview
-This application streamlines the financial workflow between Regional Headquarters (RHQ) and individual airport stations. It ensures transparency in fund requests, approvals, and the technical stages of work completion.
+A robust financial management solution developed for the Airports Authority of India (AAI). This application streamlines the lifecycle of fund requests and project tracking across regional and station-level offices.
 
-🛠 Features
-Role-Based Access: Secure login and registration flows for RHQ and Station-level users.
+Frontend: Built with Streamlit for an interactive, web-based user experience.
 
-Fund Request Lifecycle: Stations can submit requests, and RHQ can approve or provide tokens for specific purposes.
+Data Processing: Utilizes Pandas for managing complex financial dataframes and request logs.
 
-Work Progress Workflow: Tracks project stages including AAES, Bidding, Technical/Final Evaluation, FC, and Work Completion.
+Visualizations: Leverages Matplotlib to generate analytics and progress charts for RHQ oversight.
 
-Dynamic Dashboards: Real-time data visualization using Pandas and Streamlit for monitoring financial health.
+Database: Powered by MySQL to ensure persistent storage of user credentials, fund requests, and workflow stages.
 
-Data Integrity: Automated database schema management to ensure the system is always up to date.
-
-💻 Tech Stack
-Frontend/Backend: Streamlit/MySql
-
-Data Handling: Pandas
-
-Language: Python
-
-📋 How to Run
-
-streamlit run app.py
+Workflow Automation: Tracks technical milestones from AAES and Bidding through to Work Completion.
