@@ -1,4 +1,8 @@
 AAI Fund Management Portal
+## 📊 Project Presentation & Workflow
+I have uploaded a comprehensive presentation that details the system architecture, and the complete project fund workflow for the Airports Authority of India (AAI).
+
+👉 **[Click here to view/download the Project Presentation](aai%20ppt%20fms.pptx)**
 
 A robust financial management solution developed for the Airports Authority of India (AAI). This application streamlines the lifecycle of fund requests and project tracking across regional and station-level offices.
 
