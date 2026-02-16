@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+
+{% block title %}RHQ Analytics Dashboard{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h2">RHQ Analytics Dashboard</h1>
+        <a href="{{ url_for('rhq_dashboard') }}" class="btn btn-outline-secondary">
+            <i class="fas fa-table me-1"></i> Back to Table View
+        </a>
+    </div>
+
+    <!-- Chart Grid -->
+    <div class="row">
+        <!-- Pool Summary -->
+        <div class="col-lg-6 mb-4">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Fund Pool Overview</h5>
+                </div>
+                <div class="card-body">
+                    <canvas id="poolChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Request Statuses -->
+        <div class="col-lg-6 mb-4">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Request Status Summary</h5>
+                </div>
+                <div class="card-body">
+                    <canvas id="statusChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Station Summary -->
+        <div class="col-12 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Fund Allocation by Station</h5>
+                </div>
+                <div class="card-body">
+                    <canvas id="stationChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Include Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    // Fetch data from our new API endpoint
+    fetch("{{ url_for('get_rhq_dashboard_data') }}")
+        .then(response => response.json())
+        .then(data => {
+            // 1. Pool Summary Donut Chart
+            const poolCtx = document.getElementById('poolChart').getContext('2d');
+            new Chart(poolCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: data.pool_summary.labels,
+                    datasets: [{
+                        label: 'Fund Pool',
+                        data: data.pool_summary.data,
+                        backgroundColor: ['#28a745', '#ffc107'],
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false }
+            });
+
+            // 2. Request Status Pie Chart
+            const statusCtx = document.getElementById('statusChart').getContext('2d');
+            new Chart(statusCtx, {
+                type: 'pie',
+                data: {
+                    labels: data.status_summary.labels,
+                    datasets: [{
+                        label: 'Request Statuses',
+                        data: data.status_summary.data,
+                        backgroundColor: ['#007bff', '#6c757d', '#28a745', '#dc3545', '#ffc107'],
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false }
+            });
+
+            // 3. Station Performance Bar Chart
+            const stationCtx = document.getElementById('stationChart').getContext('2d');
+            new Chart(stationCtx, {
+                type: 'bar',
+                data: {
+                    labels: data.station_summary.labels,
+                    datasets: [
+                        {
+                            label: 'Amount Assigned',
+                            data: data.station_summary.assigned_data,
+                            backgroundColor: 'rgba(0, 123, 255, 0.7)',
+                        },
+                        {
+                            label: 'Amount Used',
+                            data: data.station_summary.used_data,
+                            backgroundColor: 'rgba(255, 193, 7, 0.7)',
+                        }
+                    ]
+                },
+                options: { responsive: true, maintainAspectRatio: true, scales: { y: { beginAtZero: true } } }
+            });
+        })
+        .catch(error => console.error('Error fetching dashboard data:', error));
+});
+</script>
+{% endblock %}
