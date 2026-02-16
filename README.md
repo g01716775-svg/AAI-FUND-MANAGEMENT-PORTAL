@@ -18,7 +18,7 @@ Dynamic Dashboards: Real-time data visualization using Pandas and Streamlit for 
 Data Integrity: Automated database schema management to ensure the system is always up to date.
 
 💻 Tech Stack
-Frontend/Backend: Streamlit
+Frontend/Backend: Streamlit/MySql
 
 Data Handling: Pandas
 
